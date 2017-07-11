@@ -1,7 +1,7 @@
 {
   "name": "IMDb Filters",
   "manifest_version": 2,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "short_name": "IMDb Filters",
   "icons": {
     "48": "images/imdb-sm.png",

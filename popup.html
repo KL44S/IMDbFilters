@@ -7,44 +7,52 @@
 
 	<body>
 
-		<h1>FILTROS</h1>
+		<div class="onoffswitch">
+		    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+		    <label class="onoffswitch-label" for="myonoffswitch">
+		        <span class="onoffswitch-inner"></span>
+		        <span class="onoffswitch-switch"></span>
+		    </label>
+		</div>
 
-		<h3>A&#209;O</h3>
+		<h1 id="title">FILTROS</h1>
 
-		<label>desde</label>
+		<h3 id="yearTitle" class="no-space">A&#209;O</h3>
+
+		<label class="from">desde</label>
 		<input type="number" min="1700" max="3000" placeholder="1980" id="fromYearSelectedValue">
 
-		<label>hasta</label>
+		<label class="until">hasta</label>
 		<input type="number" min="1700" max="3000" placeholder="2020" id="untilYearSelectedValue">
 
 		<hr/>
 
-		<h3>RATING</h3>
+		<h3 id="ratingTitle">RATING</h3>
 
-		<label>desde</label>
+		<label class="from">desde</label>
 		<input type="number" min="0" max="10" placeholder="1" id="minRatingSelectedValue">
 
-		<label>hasta</label>
+		<label class="until">hasta</label>
 		<input type="number" min="0" max="10" placeholder="10" id="maxRatingSelectedValue">
 
 		<hr/>
 
-		<h3>VOTOS</h3>
+		<h3 id="votesTitle">VOTOS</h3>
 
-		<label>desde</label>
+		<label class="from">desde</label>
 		<input type="number" min="0" placeholder="1" max="9999999" id="minVotesSelectedValue">
 
-		<label>hasta</label>
+		<label class="until">hasta</label>
 		<input type="number" min="0" placeholder="1000000" max="9999999" id="maxVotesSelectedValue">
 
 		<hr/>
 
-		<h3>DURACION (min)</h3>
+		<h3 id="runtimeTitle">DURACION (min)</h3>
 
-		<label>desde</label>
+		<label class="from">desde</label>
 		<input type="number" min="0" placeholder="25" max="9999999" id="minRuntimeSelectedValue">
 
-		<label>hasta</label>
+		<label class="until">hasta</label>
 		<input type="number" min="0" placeholder="200" max="9999999" id="maxRuntimeSelectedValue">
 
 
