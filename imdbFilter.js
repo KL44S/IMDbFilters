@@ -1,28 +1,37 @@
 function filterByYear(element, fromYear, untilYear) {
 	
-	if (fromYear == null || fromYear == undefined || fromYear == "") {
+	if (fromYear == null || fromYear == undefined || fromYear == "undefined"  || fromYear == "") {
 		fromYear = 0;
 	}
 
-	if (untilYear == null || untilYear == undefined || untilYear == "") {
+	if (untilYear == null || untilYear == undefined || untilYear == "undefined" || untilYear == "") {
 		untilYear = 99999999;
 	}
 
 	var span = element.find("span[class='lister-item-year text-muted unbold']");
-	var spanText = span.text().replace('(', '').replace(')', '');
-	var year = parseInt(spanText);
+	var spanText = span.text().replace('(', '').replace(')', '').split('–');
+	var yearFrom = parseInt(spanText[0]);
+	var yearUntil = yearFrom;
 
-	if (year > untilYear || year < fromYear) {
+	if (spanText.length > 1) {
+		if (spanText[1] != "" && spanText[1] != " ") {
+			yearUntil = parseInt(spanText[1]);
+		}
+	}
+
+	if (yearUntil > untilYear || yearFrom < fromYear) {
 		return true;
 	}
+
+	return false;
 }
 
 function filterByRating(element, minScore, maxScore) {
-	if (minScore == null || minScore == undefined || minScore == "") {
+	if (minScore == null || minScore == undefined || minScore == "undefined" || minScore == "") {
 		minScore = 0.0;
 	}
 
-	if (maxScore == null || maxScore == undefined || maxScore == "") {
+	if (maxScore == null || maxScore == undefined || maxScore == "undefined" || maxScore == "") {
 		maxScore = 11.0;
 	}
 
@@ -33,33 +42,44 @@ function filterByRating(element, minScore, maxScore) {
 	if (score > maxScore || score < minScore) {
 		return true;
 	}
+
+	return false;
 }
 
 function filterByYearTop(element, fromYear, untilYear) {
 	
-	if (fromYear == null || fromYear == undefined || fromYear == "") {
+	if (fromYear == null || fromYear == undefined || fromYear == "undefined" || fromYear == "") {
 		fromYear = 0;
 	}
 
-	if (untilYear == null || untilYear == undefined || untilYear == "") {
+	if (untilYear == null || untilYear == undefined || untilYear == "undefined" || untilYear == "") {
 		untilYear = 99999999;
 	}
 
 	var span = element.find("span.secondaryInfo");
-	var spanText = span.text().replace('(', '').replace(')', '');
-	var year = parseInt(spanText);
+	var spanText = span.text().replace('(', '').replace(')', '').split('–');;
+	var yearFrom = parseInt(spanText[0]);
+	var yearUntil = yearFrom;
 
-	if (year > untilYear || year < fromYear) {
+	if (spanText.length > 1) {
+		if (spanText[1] != "") {
+			yearUntil = parseInt(spanText[1]);
+		}
+	}
+
+	if (yearUntil > untilYear || yearFrom < fromYear) {
 		return true;
 	}
+
+	return false;
 }
 
 function filterByRatingTop(element, minScore, maxScore) {
-	if (minScore == null || minScore == undefined || minScore == "") {
+	if (minScore == null || minScore == undefined || minScore == "undefined" || minScore == "") {
 		minScore = 0.0;
 	}
 
-	if (maxScore == null || maxScore == undefined || maxScore == "") {
+	if (maxScore == null || maxScore == undefined || maxScore == "undefined" || maxScore == "") {
 		maxScore = 11.0;
 	}
 
@@ -70,14 +90,16 @@ function filterByRatingTop(element, minScore, maxScore) {
 	if (score > maxScore || score < minScore) {
 		return true;
 	}
+
+	return false;
 }
 
 function filterByRuntime(element, minRuntime, maxRuntime) {
-	if (minRuntime == null || minRuntime == undefined || minRuntime == "") {
+	if (minRuntime == null || minRuntime == undefined || minRuntime == "undefined" || minRuntime == "") {
 		minRuntime = 0;
 	}
 
-	if (maxRuntime == null || maxRuntime == undefined || maxRuntime == "") {
+	if (maxRuntime == null || maxRuntime == undefined || maxRuntime == "undefined" || maxRuntime == "") {
 		maxRuntime = 99999999;
 	}
 
@@ -88,14 +110,16 @@ function filterByRuntime(element, minRuntime, maxRuntime) {
 	if (runtime > maxRuntime || runtime < minRuntime) {
 		return true;
 	}
+
+	return false;
 }
 
 function filterByVotes(element, minVotesNumber, maxVotesNumber) {
-	if (minVotesNumber == null || minVotesNumber == undefined || minVotesNumber == "") {
+	if (minVotesNumber == null || minVotesNumber == undefined || minVotesNumber == "undefined" || minVotesNumber == "") {		
 		minVotesNumber = 0;
 	}
 
-	if (maxVotesNumber == null || maxVotesNumber == undefined || maxVotesNumber == "") {
+	if (maxVotesNumber == null || maxVotesNumber == undefined || maxVotesNumber == "undefined" || maxVotesNumber == "") {
 		maxVotesNumber = 99999999;
 	}
 
@@ -106,6 +130,8 @@ function filterByVotes(element, minVotesNumber, maxVotesNumber) {
 	if (votesNumber > maxVotesNumber || votesNumber < minVotesNumber) {
 		return true;
 	}
+
+	return false;
 }
 
 function isTop() {
@@ -128,7 +154,7 @@ function filter() {
 		items = $("div[class='lister-item mode-advanced']");
 	}
 
-	var fromYearSelectedValue = parseInt($("#fromYearSelectedValue").val());
+	var fromYearSelectedValue = $("#fromYearSelectedValue").val();
 	var untilYearSelectedValue = $("#untilYearSelectedValue").val();
 	var minRatingSelectedValue = $("#minRatingSelectedValue").val();
 	var maxRatingSelectedValue = $("#maxRatingSelectedValue").val();
