@@ -125,7 +125,7 @@ function filterByVotes(element, minVotesNumber, maxVotesNumber) {
 
 	var paragraphers = element.find("p.sort-num_votes-visible");
 	var attribute = "data-value";
-	var votesNumber = $(paragraphers.children()[1]).attr(attribute);
+	var votesNumber = parseInt($(paragraphers.children()[1]).attr(attribute));
 
 	if (votesNumber > maxVotesNumber || votesNumber < minVotesNumber) {
 		return true;
