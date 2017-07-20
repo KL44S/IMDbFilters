@@ -1,9 +1,20 @@
 @charset "utf-8";
 
+html {
+  height: 157px;
+}
+
 body {
 	background-color: #757575;
 	color: white;
 	font-family: 'Oswald', sans-serif;
+  transition-property: height;
+  transition-duration: 1s;
+  height: 139px;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 
 h3 {
@@ -19,12 +30,18 @@ hr {
 }
 
 h1 {
-	text-align: center;
 	font-size: 17px;
+    display: inline;
+}
+
+.title {
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 9px;
 }
 
 .no-space {
-	margin-top: -13px !important;
+	margin-top: -4px !important;
 }
 
 input {
@@ -91,4 +108,116 @@ label {
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
+}
+
+#main {
+    transition-property: transform;
+    transition-duration: 1s;
+}
+
+.main {
+    transform: translateY(-102px);
+}
+
+.main-filter {
+    margin-top: 3px;
+    overflow-y: hidden;
+    max-height: 522px;
+    height: 522px;
+    transition-property: all;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.5, 1, 0.5, 1);
+}
+
+.main-filter-toggle {
+    max-height: 0 !important;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin-left: 7px;
+  cursor: pointer;
+}
+
+.glyphicon-chevron-down:before {
+  content: "\e114";
+}
+
+.glyphicon-chevron-up:before {
+  content: "\e113";
+}
+
+.glyphicon-off:before {
+  content: "\e017";
+}
+
+.power,
+.power-off {
+    font-size: 50px;
+    margin-left: -3px;
+    transition-property: color, text-shadow;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+.power {
+    color: #EBEBEB;
+}
+
+.power-off {
+    color: white;
+    text-shadow: 0 0 10px #81C9FF;
+}
+
+.power:hover {
+    color: white;
+    text-shadow: 0 0 5px #949494;
+}
+
+.center {
+    text-align: center;
+    margin: 10px;
+}
+
+.gly-rotate-down {
+  animation: rotate-down 0.1s linear;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.gly-rotate-up {
+  animation: rotate-up 0.1s linear;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes rotate-down {
+  0% {
+    -webkit-transform: rotate(179deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@keyframes rotate-up {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(179deg);
+  }
 }

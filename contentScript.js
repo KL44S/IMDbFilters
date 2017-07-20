@@ -52,6 +52,12 @@ chrome.storage.sync.get(null, function (data) {
 	maxRuntimeHiddenElement.setAttribute("type", "hidden");
 	maxRuntimeHiddenElement.value = data["maxRuntimeSelectedValue"];
 
+	//ON-OFF
+	var filtersOnOffElement = document.createElement("input");
+	filtersOnOffElement.setAttribute("id", "filtersOnOffValue");
+	filtersOnOffElement.setAttribute("type", "hidden");
+	filtersOnOffElement.value = data["filtersOnOff"];
+
 	document.body.appendChild(fromYearHiddenElement);
 	document.body.appendChild(untilYearHiddenElement);
 	document.body.appendChild(minRatingHiddenElement);
@@ -60,6 +66,7 @@ chrome.storage.sync.get(null, function (data) {
 	document.body.appendChild(maxVotesHiddenElement);
 	document.body.appendChild(minRuntimeHiddenElement);
 	document.body.appendChild(maxRuntimeHiddenElement);
+	document.body.appendChild(filtersOnOffElement);
 });
 
 

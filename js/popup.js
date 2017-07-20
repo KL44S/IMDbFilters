@@ -69,6 +69,81 @@ function changeLanguage(language) {
 	setLanguage(language);
 }
 
+function toogleOnOff(filtersOnOff) {
+	filtersOnOff.classList.toggle('power-off');
+	filtersOnOff.classList.toggle('power');
+}
+
+function setOnOff(filtersOnOff) {
+	var key = filtersOnOff.getAttribute("id");
+
+	chrome.storage.sync.get(key, function (data) {
+		var value = "on";
+
+		if (data[key] == "on") {
+			value = "off";
+		}
+
+		var objectToPersist = {};
+		objectToPersist[key] = value;
+		chrome.storage.sync.set(objectToPersist, function() {});
+	});
+
+}
+
+function loadOnOff(filtersOnOff) {
+	var key = filtersOnOff.getAttribute("id");
+
+	chrome.storage.sync.get(key, function (data) {
+		if (data[key] == "on") {
+			toogleOnOff(filtersOnOff);
+		}
+	});
+}
+
+function changeRotateCss(dropdownFiltersToggle) {
+	var rotateDownClass = "gly-rotate-down";
+	var rotateUpClass = "gly-rotate-up";
+
+	if (dropdownFiltersToggle.classList.contains(rotateDownClass)) {
+		dropdownFiltersToggle.classList.remove(rotateDownClass);
+		dropdownFiltersToggle.classList.add(rotateUpClass);
+	}
+	else {
+		if (dropdownFiltersToggle.classList.contains(rotateUpClass)) {
+			dropdownFiltersToggle.classList.remove(rotateUpClass);
+			dropdownFiltersToggle.classList.add(rotateDownClass);
+		}
+		else {
+			dropdownFiltersToggle.classList.add(rotateUpClass);
+		}
+	}
+}
+
+function setSlideCss() {
+	var dropdownFilters = document.getElementById("mainFilters");
+	dropdownFilters.classList.toggle('main-filter-toggle');
+}
+
+function slideUpMain() {
+	var main = document.getElementById("main");
+	main.classList.toggle("main");
+}
+
+var dropdownFiltersToggle = document.getElementById("mainFiltersToggle");
+dropdownFiltersToggle.addEventListener("click", function() {
+	slideUpMain();
+	setSlideCss();
+	changeRotateCss(dropdownFiltersToggle);
+});
+
+var filtersOnOff = document.getElementById("filtersOnOff");
+filtersOnOff.addEventListener("click", function() {
+	toogleOnOff(filtersOnOff);
+	setOnOff(filtersOnOff);
+});
+loadOnOff(filtersOnOff);
+
 var fromYearSelectedValue = document.getElementById("fromYearSelectedValue");
 fromYearSelectedValue.addEventListener("change", function() {
 	saveValue(fromYearSelectedValue);

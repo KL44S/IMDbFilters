@@ -144,57 +144,64 @@ function isTop() {
 }
 
 function filter() {
-	var isTopVar = isTop();
-	var items = null;
+	var filtersOnOffValue = $("#filtersOnOffValue").val();
 
-	if (isTopVar) {
-		items = $(".lister-list").find("tr");
-	}
-	else {
-		items = $("div[class='lister-item mode-advanced']");
-	}
+	if (filtersOnOffValue == "on") {
+		var isTopVar = isTop();
+		var items = null;
 
-	var fromYearSelectedValue = $("#fromYearSelectedValue").val();
-	var untilYearSelectedValue = $("#untilYearSelectedValue").val();
-	var minRatingSelectedValue = $("#minRatingSelectedValue").val();
-	var maxRatingSelectedValue = $("#maxRatingSelectedValue").val();
-	var minVotesSelectedValue = $("#minVotesSelectedValue").val();
-	var maxVotesSelectedValue = $("#maxVotesSelectedValue").val();
-	var minRuntimeSelectedValue = $("#minRuntimeSelectedValue").val();
-	var maxRuntimeSelectedValue = $("#maxRuntimeSelectedValue").val();
-
-	items.each(function() {
 		if (isTopVar) {
-			if (filterByYearTop($(this), fromYearSelectedValue, untilYearSelectedValue)) {
-				$(this).remove();
-			}
-			else {
-				if (filterByRatingTop($(this), minRatingSelectedValue, maxRatingSelectedValue)) {
-					$(this).remove();
-				}
-			}
+			items = $(".lister-list").find("tr");
 		}
 		else {
-			if (filterByYear($(this), fromYearSelectedValue, untilYearSelectedValue)) {
-				$(this).remove();
-			}
-			else {
-				if (filterByRating($(this), minRatingSelectedValue, maxRatingSelectedValue)) {
+			items = $("div[class='lister-item mode-advanced']");
+		}
+
+		var fromYearSelectedValue = $("#fromYearSelectedValue").val();
+		var untilYearSelectedValue = $("#untilYearSelectedValue").val();
+		var minRatingSelectedValue = $("#minRatingSelectedValue").val();
+		var maxRatingSelectedValue = $("#maxRatingSelectedValue").val();
+		var minVotesSelectedValue = $("#minVotesSelectedValue").val();
+		var maxVotesSelectedValue = $("#maxVotesSelectedValue").val();
+		var minRuntimeSelectedValue = $("#minRuntimeSelectedValue").val();
+		var maxRuntimeSelectedValue = $("#maxRuntimeSelectedValue").val();
+		
+
+
+		items.each(function() {
+			if (isTopVar) {
+				if (filterByYearTop($(this), fromYearSelectedValue, untilYearSelectedValue)) {
 					$(this).remove();
 				}
 				else {
-					if (filterByVotes($(this), minVotesSelectedValue, maxVotesSelectedValue)) {
+					if (filterByRatingTop($(this), minRatingSelectedValue, maxRatingSelectedValue)) {
+						$(this).remove();
+					}
+				}
+			}
+			else {
+				if (filterByYear($(this), fromYearSelectedValue, untilYearSelectedValue)) {
+					$(this).remove();
+				}
+				else {
+					if (filterByRating($(this), minRatingSelectedValue, maxRatingSelectedValue)) {
 						$(this).remove();
 					}
 					else {
-						if (filterByRuntime($(this), minRuntimeSelectedValue, maxRuntimeSelectedValue)) {
+						if (filterByVotes($(this), minVotesSelectedValue, maxVotesSelectedValue)) {
 							$(this).remove();
+						}
+						else {
+							if (filterByRuntime($(this), minRuntimeSelectedValue, maxRuntimeSelectedValue)) {
+								$(this).remove();
+							}
 						}
 					}
 				}
 			}
-		}
-	});
+		});
+	}
+
 }
 
 (function() {
