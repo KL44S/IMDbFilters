@@ -1,5 +1,5 @@
 var srciptElement = document.createElement('script');
-srciptElement.src = chrome.extension.getURL('imdbFilter.js');
+srciptElement.src = chrome.extension.getURL('imdbFilter.min.js');
 
 (document.head||document.documentElement).appendChild(srciptElement);
 

@@ -13,8 +13,8 @@
   "permissions": ["storage"],
   "description": "Extensión para filtrar películas y series en IMDb",
    "content_scripts": [{
-        "js": ["contentScript.js"],
+        "js": ["contentScript.min.js"],
         "matches": ["http://www.imdb.com/*"]
     }],
-    "web_accessible_resources": ["imdbFilter.js"]
+    "web_accessible_resources": ["imdbFilter.min.js"]
 }
